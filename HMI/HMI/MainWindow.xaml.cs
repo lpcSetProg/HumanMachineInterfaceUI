@@ -57,8 +57,18 @@ namespace HMI
 
         public void initiliazeHMI()
         {
-               
-        
+            button_warning_hopper.Background = Brushes.White;
+            button_warning_fill_heads.Background = Brushes.White;
+            button_warning_weight_station.Background = Brushes.White;
+            button_warning_sealer.Background = Brushes.White;
+            button_warning_labeler.Background = Brushes.White;
+            button_warning_case_packer.Background = Brushes.White;
+
+            textBox_NameStation.Text = "CASE PACKER";
+            textBox_status.Text = "DOWN";
+            textBox_StartTime.Text = "14:24";
+            textBox_StopTime.Text = "17:44";
+            textBox_eventDuration.Text = "14:24 to 18:02";
 
 
 
@@ -67,12 +77,30 @@ namespace HMI
 
         private void button_start_Hopper_Click(object sender, RoutedEventArgs e)
         {
+           
+                
+
+
+
+        }
+
+        private void button_StartProcess_Click(object sender, RoutedEventArgs e)
+        {
+
             incre = incre + 1;
             textBox_CanCount.Text = incre.ToString();
 
             if (Enumerable.Range(1, 39).Contains(incre))
             {
                 button_warning_hopper.Background = Brushes.Green;
+                button_warning_fill_heads.Background = Brushes.Green;
+                button_warning_weight_station.Background = Brushes.Green;
+                button_warning_sealer.Background = Brushes.Green;
+                button_warning_labeler.Background = Brushes.Green;
+                button_warning_case_packer.Background = Brushes.Green;
+
+
+
             }
             else if (Enumerable.Range(40, 119).Contains(incre))
             {
@@ -83,12 +111,16 @@ namespace HMI
                 button_warning_hopper.Background = Brushes.Red;
                 button_start_Hopper.IsEnabled = false;
             }
-                
+        }
 
-
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
         }
 
-       
+        private void textBox_status_TextChanged(object sender, TextChangedEventArgs e)
+        {
+          
+        }
     }
 }
