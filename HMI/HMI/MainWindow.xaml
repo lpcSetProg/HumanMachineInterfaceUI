@@ -5,13 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HMI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="658.065" Width="739.516">
+        Title="MainWindow" Height="935.065" Width="1201.516" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="139*"/>
-            <ColumnDefinition Width="438*"/>
-            <ColumnDefinition Width="155*"/>
+            <ColumnDefinition Width="112*"/>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="318*"/>
+            <ColumnDefinition Width="125*"/>
         </Grid.ColumnDefinitions>
+        <TabControl x:Name="tabControlHMI" HorizontalAlignment="Left" Height="905" VerticalAlignment="Top" Width="1196" Grid.ColumnSpan="4">
+            <TabItem x:Name="tabItem_Line" Header="Line" Height="22">
+                <Grid Background="#FFE5E5E5" Margin="0,0,-2,-6" Height="881">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="37*"/>
+                        <ColumnDefinition Width="792*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="button_stop" Content="STOP" HorizontalAlignment="Left" Margin="360,688,0,0" VerticalAlignment="Top" Width="364" Height="159" Grid.Column="1" Background="Red" Click="button_stop_Click" Foreground="#FFFDFDFD" FontSize="16"/>
+                    <Separator HorizontalAlignment="Left" Height="100" Margin="0,607,0,0" VerticalAlignment="Top" Width="1192" RenderTransformOrigin="0.42,-0.07" Grid.ColumnSpan="2"/>
+                    <Rectangle x:Name="rectangle_hopper" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="283" Margin="20,34,0,0" Stroke="Black" VerticalAlignment="Top" Width="366" Grid.ColumnSpan="2"/>
+                    <Button x:Name="button_warning_hopper" Content="Warning" HorizontalAlignment="Left" Margin="92,256,0,0" VerticalAlignment="Top" Width="114" Background="#FFFFE90C" Height="39" Grid.Column="1"/>
+                    <Rectangle x:Name="rectangle_fillheads" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="283" Margin="358,34,0,0" Stroke="Black" VerticalAlignment="Top" Width="366" Grid.Column="1"/>
+                    <Button x:Name="button_warning_fill_heads" Content="Warning" HorizontalAlignment="Left" Margin="487,254,0,0" VerticalAlignment="Top" Width="114" Background="#FFFFE90C" Height="39" Grid.Column="1"/>
+                    <Rectangle x:Name="rectangle_weighStation" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="283" Margin="748,34,0,0" Stroke="Black" VerticalAlignment="Top" Width="366" Grid.Column="1"/>
+                    <Button x:Name="button_warning_weight_station" Content="Warning" HorizontalAlignment="Left" Margin="876,254,0,0" VerticalAlignment="Top" Width="114" Background="#FFFFE90C" Height="39" Grid.Column="1"/>
+                    <Rectangle x:Name="rectangle_Sealer" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="283" Margin="22,346,0,0" Stroke="Black" VerticalAlignment="Top" Width="366" Grid.ColumnSpan="2"/>
+                    <Button x:Name="button_warning_sealer" Content="Warning" HorizontalAlignment="Left" Margin="94,568,0,0" VerticalAlignment="Top" Width="114" Background="#FFFFE90C" Height="39" Grid.Column="1"/>
+                    <Rectangle x:Name="rectangle_labeler" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="283" Margin="360,346,0,0" Stroke="Black" VerticalAlignment="Top" Width="366" Grid.Column="1"/>
+                    <Button x:Name="button_warning_labeler" Content="Warning" HorizontalAlignment="Left" Margin="488,566,0,0" VerticalAlignment="Top" Width="114" Background="#FFFFE90C" Height="39" Grid.Column="1"/>
+                    <Rectangle x:Name="rectangle_casePacker" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="283" Margin="750,346,0,0" Stroke="Black" VerticalAlignment="Top" Width="366" Grid.Column="1"/>
+                    <Button x:Name="button_warning_case_packer" Content="Warning" HorizontalAlignment="Left" Margin="878,566,0,0" VerticalAlignment="Top" Width="114" Background="#FFFFE90C" Height="39" Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabItem_Manual" Header="Manual">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>
