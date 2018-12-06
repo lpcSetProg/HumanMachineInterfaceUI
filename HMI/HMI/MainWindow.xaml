@@ -74,11 +74,12 @@
                         <ColumnDefinition Width="9*"/>
                         <ColumnDefinition Width="229*"/>
                     </Grid.ColumnDefinitions>
+                    <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Height="709" Margin="469,0,0,0" VerticalAlignment="Top" Width="666" BorderThickness="2,0,0,0"/>
                     <Button x:Name="button_stop_the2nd" Content="STOP" HorizontalAlignment="Left" Margin="364,756,0,0" VerticalAlignment="Top" Width="364" Height="113" Background="Red" Click="button_stop_Click" Foreground="#FFFDFDFD" FontSize="16" Grid.Column="1"/>
                     <Button x:Name="button_StartProcess_the2nd" Content="START PROCESS" HorizontalAlignment="Left" Margin="18,755,0,0" VerticalAlignment="Top" Width="364" Height="113" Background="#FF0081CB" Foreground="#FFFDFDFD" FontSize="16" Click="button_StartProcess_Click" Grid.ColumnSpan="2"/>
                     <Button x:Name="button_shutDownProcess_the2nd" Content="SHUT DOWN" HorizontalAlignment="Left" Margin="758,757,0,0" VerticalAlignment="Top" Width="364" Height="113" Background="#FF17FF00" Foreground="#FFFDFDFD" FontSize="16" Grid.Column="1" Click="button_shutDownProcess_the2nd_Click"/>
                     <Separator HorizontalAlignment="Left" Height="100" Margin="0,659,-2,0" VerticalAlignment="Top" Width="1192" RenderTransformOrigin="0.42,-0.07" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="textBox_DownTime" HorizontalAlignment="Left" Height="187" Margin="511,79,0,0" TextWrapping="Wrap" Text="There was an error on the assembly line. &#xD;&#xA;There has been a jam - at CASE PACKER. " VerticalAlignment="Top" Width="531" FontSize="16" Grid.Column="1"/>
+                    <TextBox x:Name="textBox_DownTime" HorizontalAlignment="Left" Height="187" Margin="6,414,0,0" TextWrapping="Wrap" Text="There was an error on the assembly line. &#xA;There has been a jam - at CASE PACKER. " VerticalAlignment="Top" Width="395" FontSize="16" Grid.Column="1"/>
                     <TextBox x:Name="textBox_status" HorizontalAlignment="Left" Height="23" Margin="209,132,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="192" FontSize="16" TextChanged="textBox_status_TextChanged" Grid.Column="1"/>
                     <Label x:Name="label_status" Content="STATION STATUS" HorizontalAlignment="Left" Margin="6,127,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
                     <TextBox x:Name="textBox_StartTime" HorizontalAlignment="Left" Height="23" Margin="209,184,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="192" FontSize="16" TextChanged="textBox_status_TextChanged" Grid.Column="1"/>
@@ -87,12 +88,19 @@
                     <Label x:Name="label_status_Copy1" Content="STATION STOP TIME" HorizontalAlignment="Left" Margin="6,235,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
                     <TextBox x:Name="textBox_NameStation" HorizontalAlignment="Left" Height="23" Margin="209,85,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="192" FontSize="16" TextChanged="textBox_status_TextChanged" Grid.Column="1"/>
                     <Label x:Name="label_status_Copy2" Content="STATION NAME" HorizontalAlignment="Left" Margin="6,79,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
-                    <Label x:Name="label_status_Copy3" Content="DESCRIPTION" HorizontalAlignment="Left" Margin="511,40,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
-                    <Label x:Name="label_status_Copy4" Content="SYSTEM IS DOWN" HorizontalAlignment="Left" Margin="6,23,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Grid.Column="1"/>
-                    <Button x:Name="button_confirmation" Content="CONFIRM DURATION" HorizontalAlignment="Left" Margin="423,515,0,0" VerticalAlignment="Top" Width="242" Height="103" Grid.Column="1" Background="#FF0081CB" Foreground="#FFF9F6F6" FontSize="16" Click="button_confirmation_Click"/>
-                    <TextBox x:Name="textBox_eventDuration" HorizontalAlignment="Left" Height="34" Margin="366,388,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="362" FontSize="16" TextChanged="textBox_status_TextChanged" Grid.Column="1"/>
-                    <Label x:Name="label_status_Copy5" Content="EVENT DURATION: " HorizontalAlignment="Left" Margin="467,336,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
-                    <Label x:Name="label_status_Copy6" Content="PROCCESS CANNOT BEGIN UNTIL DURATION HAS BEEN CONFIRMED" HorizontalAlignment="Left" Margin="287,458,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
+                    <Label x:Name="label_status_Copy3" Content="DESCRIPTION" HorizontalAlignment="Left" Margin="6,375,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
+                    <Label x:Name="label_status_Copy4" Content="PRODUCTION LINE IS DOWN" HorizontalAlignment="Left" Margin="6,23,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Grid.Column="1"/>
+                    <Button x:Name="button_confirmation" Content="CONFIRM DURATION" HorizontalAlignment="Left" Margin="671,498,0,0" VerticalAlignment="Top" Width="240" Height="103" Grid.Column="1" Background="#FF0081CB" Foreground="#FFF9F6F6" FontSize="16" Click="button_confirmation_Click"/>
+                    <TextBox x:Name="textBox_eventDuration" HorizontalAlignment="Left" Height="34" Margin="671,444,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="240" FontSize="16" TextChanged="textBox_status_TextChanged" Grid.Column="1"/>
+                    <Label x:Name="label_status_Copy5" Content="EVENT DURATION" HorizontalAlignment="Left" Margin="685,385,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Grid.Column="1" Width="226"/>
+                    <Label x:Name="label_status_Copy6" Content="PROCCESS CANNOT BEGIN UNTIL DURATION HAS BEEN CONFIRMED" HorizontalAlignment="Left" Margin="549,649,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1"/>
+                    <TextBox x:Name="textBox_Submission" HorizontalAlignment="Left" Height="99" Margin="669,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" FontSize="16" Grid.Column="1"/>
+                    <CheckBox Content="CheckBox" Grid.Column="1" HorizontalAlignment="Left" Margin="921,83,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label_status_Copy44" Content="REASON SUBMISSION" HorizontalAlignment="Left" Margin="669,23,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Grid.Column="1"/>
+                    <CheckBox Content="CheckBox" Grid.Column="1" HorizontalAlignment="Left" Margin="921,111,0,0" VerticalAlignment="Top"/>
+                    <CheckBox Content="CheckBox" Grid.Column="1" HorizontalAlignment="Left" Margin="921,139,0,0" VerticalAlignment="Top"/>
+                    <CheckBox Content="CheckBox" Grid.Column="1" HorizontalAlignment="Left" Margin="921,163,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="button_confirmation_2" Content="CONFIRM SUBMISSION" HorizontalAlignment="Left" Margin="669,225,0,0" VerticalAlignment="Top" Width="240" Height="107" Grid.Column="1" Background="#FF0081CB" Foreground="#FFF9F6F6" FontSize="16" Click="button_confirmation_Click"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_SHUTDOWN" Header="SHUT DOWN" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="88" Margin="-2,-2,-32,0">
