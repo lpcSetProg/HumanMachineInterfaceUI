@@ -32,6 +32,8 @@ namespace HMI
     {
         int incre = 0;
         int vol = 0;
+        int weight = 0;
+        string timeStart = "";
 
         public MainWindow()
         {
@@ -43,6 +45,8 @@ namespace HMI
          
             initiliazeHMI();
 
+
+
           
 
   
@@ -51,6 +55,7 @@ namespace HMI
      
         private void button_stop_Click(object sender, RoutedEventArgs e)
         {
+            humanTriggeredFault();
             // grey out control buttons
             button_StartProcess_the2nd.Background = Brushes.LightGray;
 
@@ -69,13 +74,53 @@ namespace HMI
             tabItem_Line.IsEnabled   = false;
             tabItem_Manual.IsEnabled = true;
             this.tabItem_Manual.Focus();
+
+
+
+
         }
 
+
+        public void humanTriggeredFault()
+        {
+            textBox_SourceProblem.Text = "HUMAN TRIGGERED";
+            textBox_NameStation.Text = "ALL STATIONS";
+            textBox_status.Text = "DOWN";
+            textBox_StartTime.Text = timeStart;
+            //textBox_StopTime.Text = timeStop;
+            //textBox_eventDuration.Text = timeStart + " to " + timeStop;
+        }
+
+        public void userCausedFault()
+        {
+            string timeStop = DateTime.Now.ToString("HH:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+            // grey out control buttons
+            button_StartProcess_the2nd.Background = Brushes.LightGray;
+            button_stop_the2nd.Background = Brushes.LightGray;
+            button_shutDownProcess_the2nd.Background = Brushes.LightGray;
+        
+            button_shutDownProcess_the2nd.IsEnabled = false;
+            button_StartProcess.IsEnabled = false;
+            button_StartProcess_the2nd.IsEnabled = false;
+            button_stop_the2nd.IsEnabled = false;
+            tabItem_Line.IsEnabled = false;
+            tabItem_Manual.IsEnabled = true;
+            this.tabItem_Manual.Focus();
+
+            textBox_SourceProblem.Text = "MACHINE TRIGGERED";
+            textBox_NameStation.Text = "HOPPER STATION";
+            textBox_status.Text = "DOWN";
+            textBox_StartTime.Text = timeStart;
+            textBox_StopTime.Text = timeStop;
+            textBox_eventDuration.Text = timeStart + " to " + timeStop;
+        }
  
 
 
         public void initiliazeHMI()
         {
+            timeStart = DateTime.Now.ToString("HH:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+            button_resolveProblem.Visibility = Visibility.Hidden;
             button_warning_hopper.Background = Brushes.White;
             button_warning_fill_heads.Background = Brushes.White;
             button_warning_weight_station.Background = Brushes.White;
@@ -83,15 +128,11 @@ namespace HMI
             button_warning_labeler.Background = Brushes.White;
             button_warning_case_packer.Background = Brushes.White;
 
-            textBox_NameStation.Text = "CASE PACKER";
-            textBox_status.Text = "DOWN";
-            textBox_StartTime.Text = "14:24";
-            textBox_StopTime.Text = "17:44";
-            textBox_eventDuration.Text = "14:24 to 18:02";
+           
 
             vol = 20000;
 
-
+            
 
 
         }
@@ -160,12 +201,13 @@ namespace HMI
                 button_warning_hopper.Content = "WARNING";
                 button_warning_hopper.Background = Brushes.Yellow;
             }
-            else if (Enumerable.Range(120, 121).Contains(incre))
+            else if (Enumerable.Range(120, 200).Contains(incre))
             {
                 button_warning_hopper.Content = "STOPPED";
                 button_warning_hopper.Background = Brushes.Red;
-           
+                button_resolveProblem.Visibility = Visibility.Visible;
             }
+           
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -206,12 +248,19 @@ namespace HMI
 
         private void button_confirmation_Click(object sender, RoutedEventArgs e)
         {
-            //button_StartProcess_the2nd.Background = Brushes.DodgerBlue;
+           
             tabItem_Manual.IsEnabled = false;
             button_StartProcess.IsEnabled = true;
             tabItem_Line.IsEnabled = true;
             button_stop_the2nd.IsEnabled = true;
             this.tabItem_Line.Focus();
+        }
+
+  
+
+        private void button_resolveProblem_Click_1(object sender, RoutedEventArgs e)
+        {
+            userCausedFault();
         }
     }
 }
