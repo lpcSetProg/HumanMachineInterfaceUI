@@ -4,7 +4,8 @@
 * PROGRAMMERS : Lev Cocarell and Bobby Vu
 * FIRST VERSION : 2018-04-12
 * DESCRIPTION :
-* This file contains the source code for the 
+* This file contains the source code for the HMI demo, for user interace design. 
+* It is a WPF and shows controls user would use for a paint line productio system.
 */
 
 using System;
@@ -25,11 +26,10 @@ using System.Windows.Shapes;
 
 namespace HMI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    
     public partial class MainWindow : Window
     {
+        // values for demonstration
         int incre = 0;
         int vol = 0;
         int weight = 0;
@@ -46,13 +46,9 @@ namespace HMI
             initiliazeHMI();
 
 
-
-          
-
-  
         }
 
-     
+        // user clicks stop
         private void button_stop_Click(object sender, RoutedEventArgs e)
         {
             humanTriggeredFault();
@@ -75,23 +71,23 @@ namespace HMI
             tabItem_Manual.IsEnabled = true;
             this.tabItem_Manual.Focus();
 
-
-
-
         }
 
-
+        // if stop button is caused by  user clicking error button
         public void humanTriggeredFault()
         {
             textBox_SourceProblem.Text = "HUMAN TRIGGERED";
             textBox_NameStation.Text = "ALL STATIONS";
             textBox_status.Text = "DOWN";
             textBox_StartTime.Text = timeStart;
-            //textBox_StopTime.Text = timeStop;
-            //textBox_eventDuration.Text = timeStart + " to " + timeStop;
+            string timeStop = DateTime.Now.ToString("HH:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+            textBox_StopTime.Text = timeStop;
+            textBox_eventDuration.Text = timeStart + " to " + timeStop;
+            textBox_DownTime.Text = "ASSEMBLY LINE HAS BEEN SHUT DOWN MANUALLY. PLEASE DETERMINE REASON AND RECTIFY SITUATION.";
         }
 
-        public void userCausedFault()
+        // if stop button is caused by clicking start process button - trigger error
+        public void machineCausedFault()
         {
             string timeStop = DateTime.Now.ToString("HH:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo);
             // grey out control buttons
@@ -107,16 +103,21 @@ namespace HMI
             tabItem_Manual.IsEnabled = true;
             this.tabItem_Manual.Focus();
 
+
+            textBox_DownTime.Text = "CASE PACKER HAS BEEN JAMMED. ASSEMBLY LINE IS JAMMED AND REQUIRES ATTENTION.";
             textBox_SourceProblem.Text = "MACHINE TRIGGERED";
-            textBox_NameStation.Text = "HOPPER STATION";
+            textBox_NameStation.Text = "CASE PACKER STATION";
             textBox_status.Text = "DOWN";
+
+
             textBox_StartTime.Text = timeStart;
             textBox_StopTime.Text = timeStop;
             textBox_eventDuration.Text = timeStart + " to " + timeStop;
+
         }
  
 
-
+        // Initialize components for HMI once user has clicked 
         public void initiliazeHMI()
         {
             timeStart = DateTime.Now.ToString("HH:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo);
@@ -127,99 +128,77 @@ namespace HMI
             button_warning_sealer.Background = Brushes.White;
             button_warning_labeler.Background = Brushes.White;
             button_warning_case_packer.Background = Brushes.White;
-
            
-
             vol = 20000;
-
-            
-
+            incre = 120;
 
         }
 
-        private void button_start_Hopper_Click(object sender, RoutedEventArgs e)
-        {
-           
-                
-
-
-
-        }
-
+        // When user clicks process - fill text box to demonstrate usability 
         private void button_StartProcess_Click(object sender, RoutedEventArgs e)
         {
-
-
             textBox_FillHeadsCount.Text = vol.ToString();
-
             vol = vol - 1000;
-
+            incre = incre - 10;
             textBox_LabelsPresent.Text = "YES";
-
-       
             textBox_FillHeadLocation.Text = "UP";
-
-
             textBox_CanWeight.Text = "3900";
-
             textBox_Sealer.Text = "10";
-
             textBox_PackerStatus.Text = "Clear";
-
             textBox_CasePacker.Text = "1";
+            textBox_PalletStatus.Text = "Found";
 
-            textBox_PalletStatus.Text = "Found";       
-
-            incre = incre + 10;
+            textBox_LabelsPresent_Copy.Text = "YES";
+            textBox_FillHeadLocation_Copy.Text = "UP";
+            textBox_CanWeight_Copy.Text = "3900";
+            textBox_Sealer_Copy.Text = "10";
+            textBox_PackerStatus_Copy.Text = "Clear";
+            textBox_CasePacker_Copy.Text = "1";
+            textBox_PalletStatus_Copy.Text = "Found";
 
             textBox_CanCount.Text = incre.ToString();
 
-        
+            button_warning_hopper.Background = Brushes.Chartreuse;
+            button_warning_fill_heads.Background = Brushes.Chartreuse;
+            button_warning_weight_station.Background = Brushes.Chartreuse;
+            button_warning_sealer.Background = Brushes.Chartreuse;
+            button_warning_labeler.Background = Brushes.Chartreuse;
+            button_warning_case_packer.Background = Brushes.Chartreuse;
 
-            if (Enumerable.Range(1, 39).Contains(incre))
+            button_warning_hopper.Content = "RUNNING";
+            button_warning_fill_heads.Content = "RUNNING";
+            button_warning_weight_station.Content = "RUNNING";
+            button_warning_sealer.Content = "RUNNING";
+            button_warning_labeler.Content = "RUNNING";
+            button_warning_case_packer.Content = "RUNNING";
+
+            // display warnings and trigger error
+            switch (incre)
             {
-                button_warning_hopper.Background = Brushes.Chartreuse;
-                button_warning_fill_heads.Background = Brushes.Chartreuse;
-                button_warning_weight_station.Background = Brushes.Chartreuse;
-                button_warning_sealer.Background = Brushes.Chartreuse;
-                button_warning_labeler.Background = Brushes.Chartreuse;
-                button_warning_case_packer.Background = Brushes.Chartreuse;
+                case int incre when (incre <= 40):
 
+                    button_warning_hopper.Content = "WARNING";
 
+                    button_warning_hopper.Background = Brushes.Yellow;
 
-                button_warning_hopper.Content = "RUNNING";
-                button_warning_fill_heads.Content = "RUNNING";
-                button_warning_weight_station.Content = "RUNNING";
-                button_warning_sealer.Content = "RUNNING";
-                button_warning_labeler.Content = "RUNNING";
-                button_warning_case_packer.Content = "RUNNING";
+                    button_warning_case_packer.Background = Brushes.Red;
 
+                    textBox_PalletStatus.Text = "JAMMED";
 
+                    button_warning_hopper.Content = "WARNING";
+
+                    button_resolveProblem.Visibility = Visibility.Visible;
+
+                    button_warning_case_packer.Content = "STOPPED";
+
+                    button_StartProcess.IsEnabled = false;
+
+                    break;
             }
-            else if (Enumerable.Range(40, 119).Contains(incre))
-            {
-                button_warning_hopper.Content = "WARNING";
-                button_warning_hopper.Background = Brushes.Yellow;
-            }
-            else if (Enumerable.Range(120, 200).Contains(incre))
-            {
-                button_warning_hopper.Content = "STOPPED";
-                button_warning_hopper.Background = Brushes.Red;
-                button_resolveProblem.Visibility = Visibility.Visible;
-            }
-           
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void textBox_status_TextChanged(object sender, TextChangedEventArgs e)
-        {
-          
-        }
-
+       
+        // shut down process - change tabs 
         private void button_shutDownProcess_Click(object sender, RoutedEventArgs e)
         {
             tabItem_Line.IsEnabled = false;
@@ -229,6 +208,7 @@ namespace HMI
 
         }
 
+        // shut down process - from shut down screen location
         private void button_StartProcess_ShutDownScreen_Click(object sender, RoutedEventArgs e)
         {
             tabItem_Line.IsEnabled = true;
@@ -238,6 +218,7 @@ namespace HMI
             initiliazeHMI();
         }
 
+        // shut down - other example of button 
         private void button_shutDownProcess_the2nd_Click(object sender, RoutedEventArgs e)
         {
             tabItem_Line.IsEnabled = false;
@@ -246,9 +227,10 @@ namespace HMI
             this.tabItem_SHUTDOWN.Focus();
         }
 
+
+        // when user confirms changes
         private void button_confirmation_Click(object sender, RoutedEventArgs e)
         {
-           
             tabItem_Manual.IsEnabled = false;
             button_StartProcess.IsEnabled = true;
             tabItem_Line.IsEnabled = true;
@@ -257,10 +239,20 @@ namespace HMI
         }
 
   
-
         private void button_resolveProblem_Click_1(object sender, RoutedEventArgs e)
         {
-            userCausedFault();
+            machineCausedFault();
+        }
+
+
+        private void textBox_status_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void button_confirmation_2_Click(object sender, RoutedEventArgs e)
+        {
+            button_confirmation_2.IsEnabled = false;
         }
     }
 }
